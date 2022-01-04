@@ -57,7 +57,7 @@ class CategoryController extends Controller
         if (!empty($category)){
             return [
                 'error' => true,
-                'message' => 'There is already category with slug "' . $request->slug .'"'
+                'message' => 'There is already category with slug ' . $request->slug
             ];
         }
 
@@ -74,7 +74,7 @@ class CategoryController extends Controller
         } else {
             $response = [
                 'error' => true,
-                'message' => 'Failed to creata a new category!'
+                'message' => 'Failed to create a new category!'
             ];
         }
 
@@ -127,9 +127,34 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        //
+        $category = Category::find($request->id);
+
+        if (empty($category)){
+            return [
+                'error' => true,
+                'message' => 'There is no category with id ' . $request->id
+            ];
+        }
+
+        $category->slug = $request->slug;
+        $category->image = $request->image;
+        $result = $category->save();
+
+        if (!empty($result)) {
+            $response = [
+                'error' => false,
+                'message' => 'Updated successfully!'
+            ];
+        } else {
+            $response = [
+                'error' => true,
+                'message' => 'Failed to update category!'
+            ];
+        }
+
+        return response($response);
     }
 
     /**
