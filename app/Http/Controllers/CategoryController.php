@@ -52,7 +52,33 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::where('slug', $request->slug)->first();
+
+        if (!empty($category)){
+            return [
+                'error' => true,
+                'message' => 'There is already category with slug "' . $request->slug .'"'
+            ];
+        }
+
+        $category = new Category;
+        $category->slug = $request->slug;
+        $category->image = $request->image;
+        $result = $category->save();
+
+        if (!empty($result)) {
+            $response = [
+                'error' => false,
+                'message' => 'Created successfully!'
+            ];
+        } else {
+            $response = [
+                'error' => true,
+                'message' => 'Failed to creata a new category!'
+            ];
+        }
+
+        return response($response);
     }
 
     /**
