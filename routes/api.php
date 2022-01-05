@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RelationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetingController;
 
@@ -45,3 +46,12 @@ Route::delete('budgeting/{id}', [BudgetingController::class, 'destroy']);
 // specific user 
 Route::get('budgeting/user/{id}', [BudgetingController::class, 'index_user_id']);
 Route::get('budgeting/user/{id}/latest', [BudgetingController::class, 'show_user_id']);
+
+// relation
+Route::get('relation', [RelationController::class, 'index']);
+Route::get('relation/wali/{id}', [RelationController::class, 'index_by_wali']);
+Route::get('relation/beban/{id}', [RelationController::class, 'index_by_beban']);
+Route::post('relation/wali/create', [RelationController::class, 'store_by_wali']);
+Route::post('relation/beban/create', [RelationController::class, 'store_by_beban']);
+Route::put('relation/update', [RelationController::class, 'update']);
+Route::post('relation/delete', [RelationController::class, 'destroy']);
