@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RelationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BudgetingController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,3 +57,10 @@ Route::post('relation/wali/create', [RelationController::class, 'store_by_wali']
 Route::post('relation/beban/create', [RelationController::class, 'store_by_beban']);
 Route::put('relation/update', [RelationController::class, 'update']);
 Route::post('relation/delete', [RelationController::class, 'destroy']);
+
+// transaction
+Route::get('transaction', [TransactionController::class, 'index']);
+Route::get('transaction/{id}', [TransactionController::class, 'index_by_user']); //get all data by user_id
+Route::post('transaction', [TransactionController::class, 'store']);
+Route::put('transaction', [TransactionController::class, 'update']);
+Route::delete('transaction/{id}', [TransactionController::class, 'destroy']);
