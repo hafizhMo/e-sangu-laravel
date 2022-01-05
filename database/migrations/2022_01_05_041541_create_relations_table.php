@@ -16,6 +16,8 @@ class CreateRelationsTable extends Migration
         Schema::create('relations', function (Blueprint $table) {
             $table->integer('wali_id');
             $table->integer('beban_id');
+            $table->integer('status');
+            $table->integer('created_by');
         });
     }
 
