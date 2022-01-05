@@ -47,4 +47,26 @@ class UserController extends Controller
         return response($response,201);
 
     }
+
+    public function show($id)
+    {
+        $user = User::find($id);
+
+        if (!empty($user)) {
+            $response = [
+                'error' => false,
+                'message' => 'Data load successfully',
+                'user' => $user
+            ];
+            
+        } else {
+            $response = [
+                'error' => true,
+                'message' => 'Data not found',
+                'user' => null
+            ];
+        }
+        
+        return response($response);
+    }
 }

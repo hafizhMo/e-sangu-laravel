@@ -29,6 +29,7 @@ Route::get('category/{id}', [CategoryController::class, 'show']);
 // auth
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
+Route::get('user/{id}', [UserController::class, 'show']);
 
 Route::group(['middleware' => 'auth:sanctum'], function(){
     // category 
