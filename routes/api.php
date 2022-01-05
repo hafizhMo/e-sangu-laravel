@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\BudgetingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,13 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::put('category', [CategoryController::class, 'update']);
     Route::delete('category/{id}', [CategoryController::class, 'destroy']);
 });
+
+// budgeting 
+Route::get('budgeting', [BudgetingController::class, 'index']);
+Route::get('budgeting/{id}', [BudgetingController::class, 'show']);
+Route::post('budgeting', [BudgetingController::class, 'store']);
+Route::put('budgeting', [BudgetingController::class, 'update']);
+Route::delete('budgeting/{id}', [BudgetingController::class, 'destroy']);
+// specific user 
+Route::get('budgeting/user/{id}', [BudgetingController::class, 'index_user_id']);
+Route::get('budgeting/user/{id}/latest', [BudgetingController::class, 'show_user_id']);
