@@ -15,6 +15,10 @@ class CreateBudgetingsTable extends Migration
     {
         Schema::create('budgetings', function (Blueprint $table) {
             $table->id();
+            $table->double('remaining_budget');
+            $table->double('total_expenses');
+            $table->double('total_budget');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
